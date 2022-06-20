@@ -1,0 +1,37 @@
+﻿#######################################
+# Syntax Coloring Map For DFRobot_Sensor
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+DFRobot_LIDAR07	KEYWORD1
+DFROBOT_LIDAR07_UART	KEYWORD1
+DFROBOT_LIDAR07_IIC	KEYWORD1
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+getVersion	KEYWORD2
+startMeasure	KEYWORD2
+getDistanceMM	KEYWORD2
+getSignalAmplitude	KEYWORD2
+startFilter	KEYWORD2
+stopFilter	KEYWORD2
+stopMeasure	KEYWORD2
+stopMeasure	KEYWORD2
+getValue	KEYWORD2
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+eLidar07Single	LITERAL1
+eLidar07Continuous	LITERAL1
+
+
