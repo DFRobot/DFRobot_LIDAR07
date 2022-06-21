@@ -15,6 +15,7 @@
  * @author [yangfeng]<feng.yang@dfrobot.com>
  * @version  V1.0
  * @date  2022-06-20
+ * @url https://github.com/DFRobot/DFRobot_LIDAR07
  */
 #include"DFRobot_LIDAR07.h"
 
