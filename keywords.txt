@@ -7,8 +7,8 @@
 #######################################
 
 DFRobot_LIDAR07	KEYWORD1
-DFROBOT_LIDAR07_UART	KEYWORD1
-DFROBOT_LIDAR07_IIC	KEYWORD1
+DFRobot_LIDAR07_UART	KEYWORD1
+DFRobot_LIDAR07_IIC	KEYWORD1
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
@@ -33,5 +33,6 @@ getValue	KEYWORD2
 #######################################
 eLidar07Single	LITERAL1
 eLidar07Continuous	LITERAL1
-
+LIDAR07_IIC	LITERAL1
+LIDAR07_UART	LITERAL1
 

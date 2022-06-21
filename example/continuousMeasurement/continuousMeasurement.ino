@@ -21,7 +21,7 @@
 //If using IIC mode, please enable macro USE_IIC
 #define USE_IIC
 #ifdef USE_IIC  
-DFROBOT_LIDAR07_IIC  LIDAR07;
+DFRobot_LIDAR07_IIC  LIDAR07;
 #endif
 
 //If using UART mode, please enable macro USE_UART. The USE_UART is enabled by default. The two modes USE_IIC and USE_UART can’t be used at the same time.
@@ -38,7 +38,7 @@ SoftwareSerial  mySerial(4,12);//GPIO4 is corresponding to RX on main control bo
  * The TX of leonardo Serial1 is GPIO1, and the RX is GPIO0
  */
 #endif
-DFROBOT_LIDAR07_UART  LIDAR07;  
+DFRobot_LIDAR07_UART  LIDAR07;  
 #endif
 
 void setup() {

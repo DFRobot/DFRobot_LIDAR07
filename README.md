@@ -1,4 +1,4 @@
-# DFROBOT_LIDAR07
+# DFRobot_LIDAR07
 
 - [中文版](./README_CN.md)
 
@@ -30,72 +30,92 @@ This library provides two collection methods, one is single collection, the othe
 ## Installation
 
 There are two ways to use the library:
-1. Open the Arduino IDE, search for "DFROBOT_LIDAR07" in Tools --> Manager Libraries on the status bar, and install the library.
+1. Open the Arduino IDE, search for "DFRobot_LIDAR07" in Tools --> Manager Libraries on the status bar, and install the library.
 2. First download the library file, paste it into the \Arduino\libraries directory, then open the examples folder and run the demo in that folder.
 
 ## Methods
 
 ```C++
   /**
+   * @fn begin
    * @brief  Detect whether the sensor is in normal communication and configure the sensor to single acquisition mode
    * @return true Indicate communication and sensor operating mode setting is successful，false Indicate communication is failed or get wrong information 
    */
   bool begin();
 
   /**
+   * @fn getVersion
    * @brief Get the version information of the sensor
    * @return Return 32-bit data, low 16 bits are the minor version number, high 16 bits are the major version number
    */
   uint32_t getVersion();
 
   /**
+   * @fn startMeasure
    * @brief  Start measurement
    */
   void startMeasure();
   
   /**
+   * @fn getValue
    * @brief  Get the collected data
-   * @return true (Successful) ， false (Failed)
+   * @return Whether the correct data has been obtained
+   * @retval true (Successful)
+   * @retval false (Failed)
    */
   bool getValue();
 
   /**
+   * @fn setConMeasureFreq
    * @brief  Set specific measurement interval period
    * @param  frqe This parameter is valid only for continuous measurement, and the measurement period is set in ms. Minimum setting is 10MS (i.e. 100Hz)
-   * @return true (Successful) ， false (Failed)
+   * @return Whether the frequency is set successfully
+   * @retval true (Successful) 
+   * @retval false (Failed)
    */
   bool setConMeasureFreq(uint32_t frqe);
 
   /**
+   * @fn setMeasureMode
    * @brief  Set the sensor working mode
    * @param  mode The way data are collected
    * @n      eLidar07Single  A single collection
    * @n      eLidar07Continuous  Continuous acquisition
-   * @return true (Successful) ， false (Failed)
+   * @return Check whether the working mode is set successfully 
+   * @retval true (Successful) 
+   * @retval false (Failed)
    */
   bool setMeasureMode(eLIDAR07CollectMode_t mode);
 
   /**
+   * @fn getDistanceMM
    * @brief  Get the measured distance data, range: 0.2m-12m
    * @return Distance, unit: mm
    */
   uint16_t getDistanceMM();
 
   /**
+   * @fn getSignalAmplitude
    * @brief  Get signal amplitude
    * @return signal amplitude
    */
   uint16_t getSignalAmplitude();
 
   /**
+   * @fn startFilter
    * @brief  Enable filter function, this sensor has a lightweight filtering function inside
-   * @return true (successful), false (failed)
+   * @return Whether the filter was set successfully
+   * @retval true (successful)
+   * @retval false (failed)
    */
   bool startFilter();
 
   /**
+   * @fn stopFilter
    * @brief  Disable filter, this sensor has a lightweight filtering function inside
-   * @return true (successful), false (failed)
+   * @return Whether the filter is successfully closed
+   * @retval true (successful)
+   * @retval false (failed)
    */
   bool stopFilter();
 

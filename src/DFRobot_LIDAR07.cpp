@@ -2,7 +2,6 @@
  * @file DFRobot_LIDAR07.cpp
  * @brief Implementation of DFRobot_LIDAR07 class
  * @copyright Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
- * @SKU SEN0413
  * @licence     The MIT License (MIT)
  * @author [yangfeng]<feng.yang@dfrobot.com>
  * @version  V1.0
@@ -15,7 +14,7 @@
 /* CRC余式表 */
 
 
-DFROBOT_LIDAR07 :: DFROBOT_LIDAR07(uint8_t type)
+DFRobot_LIDAR07 :: DFRobot_LIDAR07(uint8_t type)
 {
   distance = 0;
   amplitude = 0;
@@ -36,7 +35,7 @@ DFROBOT_LIDAR07 :: DFROBOT_LIDAR07(uint8_t type)
   }
 }
 
-DFROBOT_LIDAR07 ::~DFROBOT_LIDAR07()
+DFRobot_LIDAR07 ::~DFRobot_LIDAR07()
 {
   delete readVersionPacket;
   delete setIntervalPacket;
@@ -56,7 +55,7 @@ DFROBOT_LIDAR07 ::~DFROBOT_LIDAR07()
   setFreq= NULL;
 }
 
-bool DFROBOT_LIDAR07:: begin()
+bool DFRobot_LIDAR07:: begin()
 {
   bool ret = false;
   uint8_t buff[12]={0};
@@ -74,7 +73,7 @@ bool DFROBOT_LIDAR07:: begin()
   return  ret;
 }
 
-bool DFROBOT_LIDAR07:: setMeasureMode(eLIDAR07CollectMode_t mode)
+bool DFRobot_LIDAR07:: setMeasureMode(eLIDAR07CollectMode_t mode)
 {
   uint8_t buff[12];
   bool ret = false;
@@ -100,7 +99,7 @@ bool DFROBOT_LIDAR07:: setMeasureMode(eLIDAR07CollectMode_t mode)
   }
   return ret;
 }
-bool DFROBOT_LIDAR07::setConMeasureFreq(uint32_t frqe)
+bool DFRobot_LIDAR07::setConMeasureFreq(uint32_t frqe)
 {
   uint8_t buff[12];
   bool ret = false;
@@ -128,35 +127,35 @@ bool DFROBOT_LIDAR07::setConMeasureFreq(uint32_t frqe)
   return ret;
 }
 
-void DFROBOT_LIDAR07::startMeasure()
+void DFRobot_LIDAR07::startMeasure()
 {
   write((void *)startPacket,sizeof(sSendPacket_t));
   delay(20);
 }
 
-uint16_t DFROBOT_LIDAR07::getDistanceMM()
+uint16_t DFRobot_LIDAR07::getDistanceMM()
 {
   return distance;
 }
 
-uint16_t DFROBOT_LIDAR07::getSignalAmplitude()
+uint16_t DFRobot_LIDAR07::getSignalAmplitude()
 {
   return amplitude;
 }
 
-uint32_t DFROBOT_LIDAR07:: getVersion()
+uint32_t DFRobot_LIDAR07:: getVersion()
 {
   return version;
 }
 
-void DFROBOT_LIDAR07::stopMeasure()
+void DFRobot_LIDAR07::stopMeasure()
 {
   write((void *)stopPacket,sizeof(sSendPacket_t));
   uint8_t buf[12];
   read((void *)buf,12,0);
 }
 
-bool DFROBOT_LIDAR07::startFilter()
+bool DFRobot_LIDAR07::startFilter()
 {
   uint8_t buff[12];
   bool ret = false;
@@ -170,7 +169,7 @@ bool DFROBOT_LIDAR07::startFilter()
   return ret;
 }
 
-bool DFROBOT_LIDAR07::stopFilter()
+bool DFRobot_LIDAR07::stopFilter()
 {
   uint8_t buff[12];
   bool ret = false;
@@ -184,7 +183,7 @@ bool DFROBOT_LIDAR07::stopFilter()
   return ret;
 }
 
-void DFROBOT_LIDAR07::readValue(uint8_t *buff,uint8_t type)
+void DFRobot_LIDAR07::readValue(uint8_t *buff,uint8_t type)
 {
 
   if(type == LIDAR07_VERSION){
@@ -196,11 +195,11 @@ void DFROBOT_LIDAR07::readValue(uint8_t *buff,uint8_t type)
 
 }
 
-DFROBOT_LIDAR07_UART::DFROBOT_LIDAR07_UART():DFROBOT_LIDAR07(LIDAR07_UART)
+DFRobot_LIDAR07_UART::DFRobot_LIDAR07_UART():DFRobot_LIDAR07(LIDAR07_UART)
 {
 }
 
-bool DFROBOT_LIDAR07_UART ::begin(Stream &s)
+bool DFRobot_LIDAR07_UART ::begin(Stream &s)
 {
   readVersionPacket->head = 0xF5;
   readVersionPacket->command = 0x43;
@@ -280,17 +279,17 @@ bool DFROBOT_LIDAR07_UART ::begin(Stream &s)
   setFreq->checkData[3] = 0x00;
 
   _s = &s;
-  return DFROBOT_LIDAR07:: begin();
+  return DFRobot_LIDAR07:: begin();
 }
 
 
-void DFROBOT_LIDAR07_UART:: write(void* pBuf, size_t size)
+void DFRobot_LIDAR07_UART:: write(void* pBuf, size_t size)
 {
   uint8_t * _pBuf = (uint8_t *)pBuf;
   this->_s->write((const uint8_t *)_pBuf,size);
 }
 
-bool DFROBOT_LIDAR07:: getValue()
+bool DFRobot_LIDAR07:: getValue()
 {
   uint8_t buff[24];
   uint32_t checkData,crc;
@@ -305,7 +304,7 @@ bool DFROBOT_LIDAR07:: getValue()
   return ret;
 }
 
-uint32_t DFROBOT_LIDAR07_UART:: read(void* pBuf, size_t size,uint8_t reg)
+uint32_t DFRobot_LIDAR07_UART:: read(void* pBuf, size_t size,uint8_t reg)
 {
   uint8_t count=0;
     uint8_t data;
@@ -349,13 +348,13 @@ uint32_t DFROBOT_LIDAR07_UART:: read(void* pBuf, size_t size,uint8_t reg)
   return crc;
 }
 
-DFROBOT_LIDAR07_IIC::DFROBOT_LIDAR07_IIC(TwoWire &wire):DFROBOT_LIDAR07(LIDAR07_IIC)
+DFRobot_LIDAR07_IIC::DFRobot_LIDAR07_IIC(TwoWire &wire):DFRobot_LIDAR07(LIDAR07_IIC)
 {
   _deviceAddr = LIDAR07_IIC_ADDR;
   _pWire = &wire;
 }
 
-bool DFROBOT_LIDAR07_IIC ::begin()
+bool DFRobot_LIDAR07_IIC ::begin()
 {
   readVersionPacket->head = 0x00;
   readVersionPacket->command = 0x43;
@@ -435,10 +434,10 @@ bool DFROBOT_LIDAR07_IIC ::begin()
   setFreq->checkData[3] = 0x00;
 
   _pWire->begin();
-  return DFROBOT_LIDAR07:: begin();
+  return DFRobot_LIDAR07:: begin();
 }
 
-void DFROBOT_LIDAR07_IIC::write(void* pBuf, size_t size)
+void DFRobot_LIDAR07_IIC::write(void* pBuf, size_t size)
 {
   if(pBuf == NULL){
 	  DBG("pBuf ERROR!! : null pointer");
@@ -454,7 +453,7 @@ void DFROBOT_LIDAR07_IIC::write(void* pBuf, size_t size)
   _pWire->endTransmission();
 }
 
-uint32_t DFROBOT_LIDAR07_IIC::read(void* pBuf, size_t size,uint8_t reg)
+uint32_t DFRobot_LIDAR07_IIC::read(void* pBuf, size_t size,uint8_t reg)
 {
   if(pBuf == NULL){
     DBG("pBuf ERROR!! : null pointer");
